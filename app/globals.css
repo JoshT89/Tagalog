@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Palette: a capiz-shell window at dusk.
+  shell (cool pearl) · indigo ink · mango · bougainvillea · banana leaf
+*/
+:root {
+  --radius: 0.5rem;
+  --background: #e9f0ed;
+  --foreground: #1b2240;
+  --card: #f8fbfa;
+  --card-foreground: #1b2240;
+  --primary: #f5b324;
+  --primary-foreground: #1b2240;
+  --secondary: #d9e4e0;
+  --secondary-foreground: #1b2240;
+  --muted: #d9e4e0;
+  --muted-foreground: #4d5874;
+  --accent: #d9e4e0;
+  --accent-foreground: #1b2240;
+  --destructive: #c4314b;
+  --border: #c3d1cd;
+  --input: #aebfba;
+  --ring: #1b2240;
+  --rosas: #b8206f;
+  --leaf: #1a7355;
+  --lattice: #1b2240;
+  --pane-locked: #b4c0c8;
+  --pane-locked-text: #343e5c;
+  --pearl-a: #fff6dc;
+  --pearl-b: #fbe3ee;
+  --pearl-c: #dff3ee;
+}
+
+.dark {
+  --background: #111630;
+  --foreground: #eef2ea;
+  --card: #1a2044;
+  --card-foreground: #eef2ea;
+  --primary: #f5b324;
+  --primary-foreground: #111630;
+  --secondary: #252c57;
+  --secondary-foreground: #eef2ea;
+  --muted: #252c57;
+  --muted-foreground: #a9b1cf;
+  --accent: #252c57;
+  --accent-foreground: #eef2ea;
+  --destructive: #ff7a8f;
+  --border: #323a6c;
+  --input: #46508a;
+  --ring: #f5b324;
+  --rosas: #f58cc0;
+  --leaf: #5ad2a8;
+  --lattice: #070a1c;
+  --pane-locked: #181d3e;
+  --pane-locked-text: #98a1c6;
+  --pearl-a: #5a4a1e;
+  --pearl-b: #55304a;
+  --pearl-c: #1f4d4a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-rosas: var(--rosas);
+  --color-leaf: var(--leaf);
+  --color-lattice: var(--lattice);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 10px);
+  --font-sans: "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Figtree Variable", ui-sans-serif, sans-serif;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+    line-height: 1.12;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+/* Tagalog text is the star: set it in the display face wherever it appears. */
+.tl {
+  font-family: var(--font-display);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+/* The capiz window: a wooden lattice holding shell panes. Finished panes glow. */
+.capiz {
+  display: grid;
+  gap: 4px;
+  padding: 4px;
+  background: var(--lattice);
+  border-radius: 6px;
+}
+.pane {
+  background: var(--card);
+  border-radius: 2px;
+  min-height: 3.25rem;
+}
+.pane-done {
+  background:
+    radial-gradient(120% 90% at 10% 0%, var(--pearl-a), transparent 60%),
+    radial-gradient(90% 120% at 100% 30%, var(--pearl-b), transparent 55%),
+    radial-gradient(100% 100% at 40% 110%, var(--pearl-c), transparent 60%), var(--card);
+}
+.pane-next {
+  box-shadow: inset 0 0 0 3px var(--primary);
+}
+.pane-locked {
+  background: var(--pane-locked);
+  color: var(--pane-locked-text);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pop {
+    animation: pop 0.22s ease-out;
+  }
+  @keyframes pop {
+    from {
+      transform: translateY(6px);
+      opacity: 0;
+    }
+  }
+}
